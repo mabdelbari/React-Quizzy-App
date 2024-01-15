@@ -3,8 +3,6 @@ import { createContext, useReducer } from "react";
 
 export const QuizContext = createContext();
 
-// const SEC_PER_QUESTION = 30;
-
 const questionPoints = {
   easy: 10,
   medium: 20,
@@ -27,7 +25,6 @@ const initialState = {
   answer: null,
   score: 0,
   highScore: 0,
-  // secondsRemaining: null,
   category: 18,
   numOfQuestions: 10,
   difficulty: "any",
@@ -57,7 +54,6 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         status: "active",
-        // secondsRemaining: state.numOfQuestions * SEC_PER_QUESTION,
         currentQues: 0,
         answer: null,
         score: 0,
@@ -113,12 +109,6 @@ function reducer(state, { type, payload }) {
         ...state,
         difficulty: payload,
       };
-    // case "timer":
-    //   return {
-    //     ...state,
-    //     secondsRemaining: state.secondsRemaining - 1,
-    //     status: state.secondsRemaining === 0 ? "finished" : state.status,
-    //   };
     default:
       throw new Error("Unkown Action");
   }
@@ -134,7 +124,6 @@ export default function QuizContextProvider({ children }) {
       answer,
       score,
       highScore,
-      // secondsRemaining,
       category,
       numOfQuestions,
       difficulty,
@@ -186,7 +175,6 @@ export default function QuizContextProvider({ children }) {
         score,
         highScore,
         maxPossibleScore,
-        // secondsRemaining,
         category,
         categoriesName,
         numOfQuestions,
